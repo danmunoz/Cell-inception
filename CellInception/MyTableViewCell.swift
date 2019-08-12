@@ -42,32 +42,26 @@ final class MyTableViewCell: UITableViewCell {
         
         let topConstraint = self.collectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor)
         topConstraint.priority = .defaultHigh
-        
-        // This constraint *could* be used to calculate the collectionView height manually
-//        let height = self.collectionView.heightAnchor.constraint(equalToConstant: 50)
         NSLayoutConstraint.activate([
-//            height,
             topConstraint,
             self.collectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             self.collectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             self.collectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
             ])
-//        self.heightConstraint = height
     }
     
     // On a real implementation, the update method would be called during cellForRowAtIndexPath and pass
     // data to populate the contents of this cell, during this time *maybe* we could calculate the correct height
     // and change the `heightConstraint.constant` to this value
     func update() {
-//        self.layoutIfNeeded()
-//        self.heightConstraint?.constant = self.collectionView.contentSize.height
-//        print("Height to set: \(self.collectionView.contentSize.height)")
-//        self.collectionView.addObserver(self, forKeyPath: "contentSize", options: .old, context: nil)
+        self.contentView.layoutIfNeeded()
     }
     
-//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-//        self.heightConstraint?.constant = self.collectionView.contentSize.height
-//    }
+    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+        collectionView.frame = CGRect(x: 0, y: 0, width: targetSize.width, height: 500)
+        self.collectionView.layoutIfNeeded()
+        return self.collectionView.collectionViewLayout.collectionViewContentSize
+    }
 
 }
 

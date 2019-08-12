@@ -40,5 +40,6 @@ final class MyCollectionViewCell: UICollectionViewCell {
             squareView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             squareView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
             ])
+        self.setNeedsLayout()
     }
 }

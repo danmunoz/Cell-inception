@@ -30,7 +30,6 @@ final class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! MyTableViewCell
         cell.update()
-//        cell.layoutIfNeeded()
         return cell
     }
 
